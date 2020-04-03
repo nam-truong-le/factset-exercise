@@ -37,7 +37,7 @@ export default {
     };
   },
   mounted () {
-    this.amountInput = this.toLocaleNumber(this.amountToUse);
+    this.amountInput = this.toLocaleNumberWithoutGrouping(this.amountToUse);
     this.fromInput = this.getCurrency(this.fromCurrencyToUse);
     this.toInput = this.getCurrency(this.toCurrencyToUse);
     this.$emit('input', {
@@ -78,6 +78,11 @@ export default {
     },
     toLocaleNumber (number) {
       return number.toLocaleString(this.$q.lang.getLocale());
+    },
+    toLocaleNumberWithoutGrouping (number) {
+      return number.toLocaleString(this.$q.lang.getLocale(), {
+        useGrouping: false
+      });
     },
     validateInput (s) {
       const amount = parseDecimalNumber(s, numeral.localeData(getLangIso()).delimiters);
