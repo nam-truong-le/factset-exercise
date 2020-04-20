@@ -5,11 +5,11 @@
     <div class="text-grey-9">{{$t('updated')}}: <span class="text-black">{{lastUpdate}}</span></div>
     <div class="row q-mt-md q-gutter-sm">
       <q-input outlined style="width: 10rem;" v-model="amountInput" :rules="[validateInput]"/>
-      <q-select outlined style="width: 15rem;" :options="currencies" v-model="fromInput" @input="updateFrom" :rules="[]"/>
+      <q-select outlined style="width: 15rem;" :options="currenciesToUse" v-model="fromInput" @input="updateFrom" :rules="[]"/>
     </div>
     <div class="row q-gutter-sm">
       <q-input outlined style="width: 10rem;" readonly :value="toLocaleNumber(result)"/>
-      <q-select outlined style="width: 15rem;" :options="currencies" v-model="toInput" @input="updateTo"/>
+      <q-select outlined style="width: 15rem;" :options="currenciesToUse" v-model="toInput" @input="updateTo"/>
     </div>
   </div>
 </template>
