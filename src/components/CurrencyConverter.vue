@@ -17,12 +17,11 @@
 <script>
 
 import * as CC from 'currency-codes';
-import * as moment from 'moment';
 import * as _ from 'lodash';
 import { RATES_CONFIG, CURRENCIES } from '../assets/rates';
 import * as numeral from 'numeral';
 import * as parseDecimalNumber from 'parse-decimal-number';
-import { getLangIso } from '../assets/utils';
+import { getLangIso, getLangLong } from '../assets/utils';
 
 const DEFAULT_AMOUNT = 1;
 
@@ -63,7 +62,9 @@ export default {
       return Number.isFinite(this.value && this.value.amount) ? this.value.amount : DEFAULT_AMOUNT;
     },
     lastUpdate () {
-      return moment(new Date(this.ratesToUse.timestamp)).toString();
+      return new Date(this.ratesToUse.timestamp).toLocaleDateString(getLangLong(), {
+        dateStyle: 'full'
+      });
     },
     result () {
       return _.round(this.amountToUse / this.ratesToUse.rates[this.fromCurrencyToUse] * this.ratesToUse.rates[this.toCurrencyToUse], 2);
